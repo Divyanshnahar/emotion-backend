@@ -8,7 +8,11 @@ import io
 from PIL import Image
 
 app = Flask(__name__)
-CORS(app)
+# 👇 IMPORTANT: enable CORS for all routes
+CORS(app, resources={r"/*": {"origins": "*"}})
+# or more strict:
+# CORS(app, resources={r"/*": {"origins": ["http://localhost:3000", "https://your-frontend.vercel.app"]}})
+# CORS(app)
 
 # Load the model and class names
 model = load_model('emotion_detection_model.h5')
